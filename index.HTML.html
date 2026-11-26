@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Data Analyst Portfolio: Music Store Sales Analysis</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f5f6fb; --surface:#ffffff; --ink:#1a1d3a; --muted:#5b6082; --line:#dfe2f0;
+  --accent:#0e8f8c; --hot:#d12f6b; --bar:#9fb0e8; --code:#12152e; --codeink:#dfe4ff;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1126; --surface:#181b38; --ink:#eceffd; --muted:#a2a8cf; --line:#2a2e58;
+    --accent:#3cc9c4; --hot:#ff6b9a; --bar:#4b5aa8; --code:#0a0c1d; --codeink:#dfe4ff;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1126; --surface:#181b38; --ink:#eceffd; --muted:#a2a8cf; --line:#2a2e58;
+  --accent:#3cc9c4; --hot:#ff6b9a; --bar:#4b5aa8; --code:#0a0c1d; --codeink:#dfe4ff;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.15;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header{padding:64px 0 40px}
+header h1{font-size:clamp(2.2rem,6vw,3.6rem);letter-spacing:-.02em;max-width:16ch}
+header p{max-width:56ch;color:var(--muted);font-size:1.1rem;margin:18px 0 0}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
+.skills li{border:1px solid var(--line);background:var(--surface);padding:4px 14px;border-radius:99px;font-size:.92rem}
+section{padding:36px 0;border-top:1px solid var(--line)}
+section h2{font-size:1.8rem;margin-bottom:8px}
+.lead{color:var(--muted);max-width:64ch;margin:0 0 24px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:28px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.kpi b{display:block;font:700 1.7rem Georgia,serif}
+.kpi span{color:var(--muted);font-size:.9rem}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:18px}
+.panel h3{font-size:1.2rem;margin-bottom:4px}
+.panel p.note{margin:0 0 16px;color:var(--muted);font-size:.95rem}
+.eq{display:flex;align-items:flex-end;gap:14px;height:240px;padding-top:10px}
+.eq div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;text-align:center;font-size:.8rem;color:var(--muted)}
+.eq i{display:block;width:100%;background:var(--bar);border-radius:6px 6px 0 0;margin-bottom:6px}
+.eq div:first-child i{background:var(--hot)}
+.eq em{font-style:normal;color:var(--ink);font-weight:600;font-size:.85rem}
+.hb{display:grid;grid-template-columns:minmax(80px,120px) 1fr 70px;gap:10px;align-items:center;margin:9px 0;font-size:.95rem}
+.hb i{display:block;height:16px;background:var(--bar);border-radius:4px}
+.hb:first-of-type i{background:var(--accent)}
+.hb em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.cols{grid-template-columns:1fr}}
+ul.find{padding-left:20px;margin:0}
+ul.find li{margin:8px 0}
+pre{background:var(--code);color:var(--codeink);padding:16px;border-radius:10px;overflow-x:auto;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:0 0 14px}
+.btn{display:inline-block;margin:10px 0 0;padding:12px 22px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600;text-decoration:none}
+.btn:hover,.btn:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
+footer{padding:36px 0 60px;color:var(--muted);border-top:1px solid var(--line);font-size:.95rem}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Your Name, data analyst</h1>
+  <p>I turn raw database tables into answers a business can act on. This page walks through my first end-to-end project, from SQL queries to an interactive Tableau dashboard.</p>
+  <ul class="skills"><li>PostgreSQL</li><li>Tableau</li><li>Python and pandas</li><li>Data cleaning</li></ul>
+</header>
+
+<main class="wrap">
+<section>
+  <h2>Music Store Sales Analysis</h2>
+  <p class="lead">A digital music store keeps its data in 11 linked tables. I queried them in PostgreSQL to find out where the money comes from, who the customers are, and what sells, then visualized the results in Tableau.</p>
+
+  <div class="kpis">
+    <div class="kpi"><b>$4,709</b><span>total revenue, 2017 to 2020</span></div>
+    <div class="kpi"><b>614</b><span>invoices</span></div>
+    <div class="kpi"><b>59</b><span>customers</span></div>
+    <div class="kpi"><b>3,503</b><span>tracks in the catalog</span></div>
+  </div>
+
+  <div class="panel">
+    <h3>Revenue by genre</h3>
+    <p class="note">Rock alone earns more than every other genre combined.</p>
+    <div class="eq" role="img" aria-label="Bar chart of revenue by genre: Rock 2,609 dollars, Metal 613, Alternative and Punk 487, Latin 165, R&amp;B/Soul 157">
+      <div><em>$2,609</em><i style="height:100%"></i>Rock</div>
+      <div><em>$613</em><i style="height:23.5%"></i>Metal</div>
+      <div><em>$487</em><i style="height:18.7%"></i>Alt &amp; Punk</div>
+      <div><em>$165</em><i style="height:6.3%"></i>Latin</div>
+      <div><em>$157</em><i style="height:6%"></i>R&amp;B/Soul</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div class="panel">
+      <h3>Revenue by country</h3>
+      <p class="note">The USA leads by a wide margin.</p>
+      <div class="hb"><span>USA</span><i style="width:100%"></i><em>$1,040</em></div>
+      <div class="hb"><span>Canada</span><i style="width:51.5%"></i><em>$536</em></div>
+      <div class="hb"><span>Brazil</span><i style="width:41.1%"></i><em>$428</em></div>
+      <div class="hb"><span>France</span><i style="width:37.4%"></i><em>$389</em></div>
+      <div class="hb"><span>Germany</span><i style="width:32.2%"></i><em>$335</em></div>
+    </div>
+    <div class="panel">
+      <h3>Revenue by year</h3>
+      <p class="note">Flat for four years, with no real growth.</p>
+      <div class="hb"><span>2017</span><i style="width:98.4%"></i><em>$1,202</em></div>
+      <div class="hb"><span>2018</span><i style="width:93.9%"></i><em>$1,147</em></div>
+      <div class="hb"><span>2019</span><i style="width:100%"></i><em>$1,222</em></div>
+      <div class="hb"><span>2020</span><i style="width:93.2%"></i><em>$1,139</em></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>What I found</h3>
+    <ul class="find">
+      <li>The USA has the most invoices (131) and the most customers (13), followed by Canada (76 invoices, 8 customers).</li>
+      <li>Rock earns $2,609 of the $4,709 total, so the catalog depends heavily on one genre.</li>
+      <li>Queen ($190) and Jimi Hendrix ($185) are the top-earning artists.</li>
+      <li>Yearly revenue stays between $1,139 and $1,222, so the store needs a growth plan beyond its current customers.</li>
+    </ul>
+  </div>
+
+  <a class="btn" href="https://public.tableau.com/app/profile/joy.roy2210/viz/MusicStoreSaleAnalysis/Dashboard1" target="_blank" rel="noopener">Open the interactive Tableau dashboard</a>
+  <a class="btn" style="background:transparent;color:var(--accent);border:2px solid var(--accent);margin-left:10px" href="https://github.com/joyroy-glitch21/SQL-Data-Analysis-Project-" target="_blank" rel="noopener">View the code on GitHub</a>
+</section>
+
+<section>
+  <h2>The SQL behind it</h2>
+  <p class="lead">Two of the queries I wrote against the PostgreSQL database.</p>
+<pre>-- Which countries have the most invoices?
+SELECT COUNT(*) AS invoice_count, billing_country
+FROM invoice
+GROUP BY billing_country
+ORDER BY invoice_count DESC;</pre>
+<pre>-- Which genres earn the most revenue?
+SELECT g.name AS genre,
+       ROUND(SUM(il.unit_price * il.quantity)::numeric, 2) AS revenue
+FROM invoice_line il
+JOIN track t ON il.track_id = t.track_id
+JOIN genre g ON t.genre_id = g.genre_id
+GROUP BY g.name
+ORDER BY revenue DESC;</pre>
+</section>
+
+<section>
+  <h2>How I built it</h2>
+  <ul class="find">
+    <li>Restored the PostgreSQL backup and explored the 11 tables.</li>
+    <li>Wrote SQL queries to answer business questions, using joins and aggregation.</li>
+    <li>Cleaned the data (padded text fields, end-of-file markers) and checked that revenue totals matched the invoices.</li>
+    <li>Built charts in Tableau and combined them into one dashboard.</li>
+  </ul>
+</section>
+</main>
+
+<footer class="wrap">Get in touch: your.email@example.com</footer>
+</body>
+</html>
